@@ -15,7 +15,7 @@ RUN cat gpg.key | apt-key add - \
     && apt-get update \
     && apt-get install -y --no-install-recommends riak=$RIAK_VERSION \
     && apt-get clean \
-    && rm -f /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 ADD supervisord-riak.conf /etc/supervisor/conf.d/supervisord-riak.conf
 ADD riak.conf /etc/riak/riak.conf
