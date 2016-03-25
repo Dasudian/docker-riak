@@ -14,14 +14,15 @@ RUN cat gpg.key | apt-key add - \
     && echo "deb-src https://packagecloud.io/basho/riak/ubuntu/ trusty main" >> /etc/apt/sources.list.d/basho_riak.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends riak=$RIAK_VERSION \
-    && apt-clean \
+    && apt-apt clean \
     && rm -f /var/lib/apt/lists/*
 
 ADD supervisord-riak.conf /etc/supervisor/conf.d/supervisord-riak.conf
 ADD riak.conf /etc/riak/riak.conf
-ADD entrypoint.sh /entrypoint.sh
 
 EXPOSE 8087 8098
+
+VOLUME ["/var/lib/riak", "/var/log/riak"]
 
 ENTRYPOINT ["supervisord"]
 CMD ["-n"]
