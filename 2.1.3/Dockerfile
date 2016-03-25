@@ -14,7 +14,7 @@ RUN cat gpg.key | apt-key add - \
     && echo "deb-src https://packagecloud.io/basho/riak/ubuntu/ trusty main" >> /etc/apt/sources.list.d/basho_riak.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends riak=$RIAK_VERSION \
-    && apt-apt clean \
+    && apt-get clean \
     && rm -f /var/lib/apt/lists/*
 
 ADD supervisord-riak.conf /etc/supervisor/conf.d/supervisord-riak.conf
