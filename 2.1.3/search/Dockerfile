@@ -24,5 +24,5 @@ EXPOSE 8087 8098
 
 VOLUME ["/var/lib/riak", "/var/log/riak"]
 
-ENTRYPOINT ["supervisord"]
-CMD ["-n"]
+ENTRYPOINT ["riak"]
+CMD ["console"]
