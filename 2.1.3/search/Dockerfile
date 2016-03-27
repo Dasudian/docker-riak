@@ -13,7 +13,7 @@ RUN cat gpg.key | apt-key add - \
     && echo "deb https://packagecloud.io/basho/riak/ubuntu/ trusty main" >> /etc/apt/sources.list.d/basho_riak.list \
     && echo "deb-src https://packagecloud.io/basho/riak/ubuntu/ trusty main" >> /etc/apt/sources.list.d/basho_riak.list \
     && apt-get update \
-    && apt-get install -y --no-install-recommends riak=$RIAK_VERSION \
+    && apt-get install -y --force-yes riak=$RIAK_VERSION \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -24,5 +24,5 @@ EXPOSE 8087 8098
 
 VOLUME ["/var/lib/riak", "/var/log/riak"]
 
-ENTRYPOINT ["riak"]
-CMD ["console"]
+ENTRYPOINT ["supervisord"]
+CMD ["-n"]
