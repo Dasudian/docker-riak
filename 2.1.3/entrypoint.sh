@@ -4,11 +4,11 @@ set -m
 RIAK_CONFIG="/etc/riak/riak.conf"
 
 SEDARG="-i 's/%STORAGE_BACKEND%/${STORAGE_BACKEND}/' ${RIAK_CONFIG}"
-eval ${SEDARG}
+eval sed ${SEDARG}
 
 NODE_IP=$(ip -o -4 addr list eth0 | awk '{print $4}' | cut -d/ -f1)
 SEDARG="-i 's/%NODE_IP%/${NODE_IP}/' ${RIAK_CONFIG}"
-eval ${SEDARG}
+eval sed ${SEDARG}
 
 supervisord -n &
 
