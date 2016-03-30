@@ -4,6 +4,9 @@ MAINTAINER Mengz <mz@dasudian.com>
 
 ENV DEBIAN_FRONTEND "noninteractive"
 ENV RIAK_VERSION "2.1.3-1"
+ENV STORAGE_BACKEND "leveldb"
+#ENV CLUSTER_NODE   (-e CLUSTER_NODE=riak@192.168.1.1)
+#ENV LAST_NODE  (-e LAST_NODE=yes)
 
 ADD gpg.key /gpg.key
 
@@ -19,10 +22,10 @@ RUN cat gpg.key | apt-key add - \
 
 ADD supervisord-riak.conf /etc/supervisor/conf.d/supervisord-riak.conf
 ADD riak.conf /etc/riak/riak.conf
+ADD entrypoint.sh /entrypoint.sh
 
 EXPOSE 8087 8098
 
 VOLUME ["/var/lib/riak", "/var/log/riak"]
 
-ENTRYPOINT ["supervisord"]
-CMD ["-n"]
+ENTRYPOINT ["/entrypoint.sh"]
