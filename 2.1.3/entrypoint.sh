@@ -25,11 +25,12 @@ if [ ! -z ${CLUSTER_NODE} ]; then
                 echo "Already in the cluster."
                 break
             else
-                echo "Join the cluster."
+                echo "Waiting 20s to join the cluster."
+                sleep 20
                 riak-admin cluster join ${CLUSTER_NODE}
                 if [ $? -eq 0 ]; then
                     if [ "$LAST_NODE" = "yes" ]; then
-                        sleep 5
+                        sleep 2
                         echo "Commit the plan."
                         riak-admin cluster plan
                         riak-admin cluster commit
