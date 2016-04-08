@@ -26,6 +26,6 @@ ADD entrypoint.sh /entrypoint.sh
 
 EXPOSE 8087 8098
 
-VOLUME ["/var/lib/riak", "/var/log/riak"]
+VOLUME ["/var/lib/riak", "/etc/riak", "/var/log/riak"]
 
 ENTRYPOINT ["/entrypoint.sh"]
