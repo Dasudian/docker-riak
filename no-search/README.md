@@ -1,6 +1,6 @@
-# dasudian/riak:2.1.3
+# dasudian/riak
 
-Basho riak database docker images, version **2.1.3** .  
+Basho riak database docker images, version **2.1.4** .  
 
 ## Tags
 
