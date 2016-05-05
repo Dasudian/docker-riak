@@ -3,7 +3,7 @@ FROM buildpack-deps:trusty-curl
 MAINTAINER Mengz <mz@dasudian.com>
 
 ENV DEBIAN_FRONTEND "noninteractive"
-ENV RIAK_VERSION "2.1.3-1"
+ENV RIAK_VERSION "2.1.4-1"
 ENV STORAGE_BACKEND "leveldb"
 #ENV CLUSTER_NODE   (-e CLUSTER_NODE=riak@192.168.1.1)
 #ENV LAST_NODE  (-e LAST_NODE=yes)
@@ -26,6 +26,6 @@ ADD entrypoint.sh /entrypoint.sh
 
 EXPOSE 8087 8098
 
-VOLUME ["/var/lib/riak", "/etc/riak", "/var/log/riak"]
+VOLUME ["/var/lib/riak", "/etc/riak"]
 
 ENTRYPOINT ["/entrypoint.sh"]
