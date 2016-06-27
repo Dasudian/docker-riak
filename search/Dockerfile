@@ -4,7 +4,8 @@ MAINTAINER Mengz <mz@dasudian.com>
 
 ENV DEBIAN_FRONTEND="noninteractive" \
   RIAK_VERSION="2.1.4-1" \
-  STORAGE_BACKEND="leveldb"
+  STORAGE_BACKEND="leveldb" \
+  NODE_HOST="127.0.0.1"
 
 # Setup the repository for riak
 RUN curl -fsSL https://packagecloud.io/install/repositories/basho/riak/script.deb.sh | sudo bash
