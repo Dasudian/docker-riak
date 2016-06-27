@@ -20,7 +20,6 @@ sed -ri "s|storage_backend = .*|storage_backend = $STORAGE_BACKEND|" $RIAK_CONFI
 
 if [ "$1" = "supervisord" ]; then
   supervisord -n &
-  echo "Start the riak container with nodename riak@$C_IP."
   fg %1
 else
   exec $@
