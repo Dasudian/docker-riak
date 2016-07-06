@@ -18,8 +18,12 @@ fi
 sed -ri "s|nodename = .*|nodename = riak@$NODE_HOST|" $RIAK_CONFIG
 sed -ri "s|storage_backend = .*|storage_backend = $STORAGE_BACKEND|" $RIAK_CONFIG
 
+# Set the permision for the riak data directory
+chown riak:riak /var/lib/riak
+
 if [ "$1" = "supervisord" ]; then
   supervisord -n &
+  echo "Run the riak container in the supervisord mode, with nodename 'riak@$NODE_HOST'"
   fg %1
 else
   exec $@
