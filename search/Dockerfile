@@ -5,6 +5,7 @@ MAINTAINER Mengz <mz@dasudian.com>
 ENV DEBIAN_FRONTEND="noninteractive" \
   RIAK_VERSION="2.1.4-1" \
   STORAGE_BACKEND="leveldb" \
+  ANTI_ENTROPY="active" \
   NODE_HOST="127.0.0.1"
 
 # Setup the repository for riak
@@ -26,7 +27,7 @@ COPY entrypoint.sh /entrypoint.sh
 
 EXPOSE 8087 8098
 
-VOLUME ["/var/lib/riak", "/etc/riak"]
+VOLUME ["/var/lib/riak"]
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["supervisord"]
