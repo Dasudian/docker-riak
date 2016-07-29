@@ -3,10 +3,13 @@ FROM buildpack-deps:trusty-curl
 MAINTAINER Mengz <mz@dasudian.com>
 
 ENV DEBIAN_FRONTEND="noninteractive" \
-  RIAK_VERSION="2.1.4-1" \
-  STORAGE_BACKEND="leveldb" \
-  ANTI_ENTROPY="active" \
-  NODE_HOST="127.0.0.1"
+  RIAK_VERSION="2.1.4-1"
+
+# Docker ENV can be used to set riak configuration
+# STORAGE_BACKEND="bitcask/leveldb"
+# ANTI_ENTROPY="active"
+# NODE_HOST="ip or hostname"
+# RIAK_SEARCH="off/on"
 
 # Setup the repository for riak
 RUN curl -fsSL https://packagecloud.io/install/repositories/basho/riak/script.deb.sh | sudo bash
@@ -19,11 +22,10 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/*
 
 RUN sed -ri "s|listener.http.internal = 127.0.0.1:8098|listener.http.internal = 0.0.0.0:8098|" /etc/riak/riak.conf && \
-  sed -ri "s|listener.protobuf.internal = 127.0.0.1:8087|listener.protobuf.internal = 0.0.0.0:8087|" /etc/riak/riak.conf && \
-  sed -ri "s|search = off|search = on|" /etc/riak/riak.conf
+  sed -ri "s|listener.protobuf.internal = 127.0.0.1:8087|listener.protobuf.internal = 0.0.0.0:8087|" /etc/riak/riak.conf
 
 COPY supervisord-riak.conf /etc/supervisor/conf.d/supervisord-riak.conf
-COPY entrypoint.sh /entrypoint.sh
+COPY docker-entrypoint.sh /entrypoint.sh
 
 EXPOSE 8087 8098
 
