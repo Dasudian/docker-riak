@@ -7,7 +7,6 @@ ENV DEBIAN_FRONTEND="noninteractive" \
 
 # Docker ENV can be used to set riak configuration
 # STORAGE_BACKEND="bitcask/leveldb"
-# ANTI_ENTROPY="active"
 # NODE_HOST="ip or hostname"
 # RIAK_SEARCH="off/on"
 

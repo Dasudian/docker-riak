@@ -20,8 +20,7 @@ if [[ -n ${NODE_HOST} ]]; then
 fi
 
 [[ -n ${STORAGE_BACKEND} ]] && sed -ri "s|storage_backend = bitcask|storage_backend = $STORAGE_BACKEND|" ${RIAK_CONFIG}
-[[ -n ${ANTI_ENTROPY} ]] && sed -ri "s|anti_entropy = active|anti_entropy = ${ANTI_ENTROPY}|" ${RIAK_CONFIG}
-[[ -n ${RIAK_SEARCH} ]] && sed -ri "s|search = off|search = ${RIAK_SEARCH}" ${RIAK_CONFIG}
+[[ -n ${RIAK_SEARCH} ]] && sed -ri "s|search = off|search = ${RIAK_SEARCH}|" ${RIAK_CONFIG}
 
 # Set the permision for the riak data directory
 chown riak:riak /var/lib/riak
